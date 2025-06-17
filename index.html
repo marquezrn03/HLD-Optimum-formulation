@@ -15,14 +15,13 @@
         .section-title { color: #d1d5db; font-weight: 700; font-size: 1.5rem; border-bottom: 1px solid #4b5563; padding-bottom: 0.75rem; margin-bottom: 1.5rem; }
         .slider-label { font-size: 0.875rem; font-weight: 700; color: #9ca3af; }
         .slider-value { font-size: 1rem; font-weight: 700; color: var(--accent-color-light); }
-        .sticky-controls { position: sticky; top: 1.5rem; }
+        /* Removed .sticky-controls CSS rule, it's now handled by Tailwind classes */
         .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
         .fade-in.visible { opacity: 1; transform: translateY(0); }
         .test-tube { width: 80px; height: 200px; border: 2px solid #9ca3af; border-top: none; border-radius: 0 0 15px 15px; margin: 0 auto; position: relative; background-color: transparent; overflow: hidden; }
         .phase { position: absolute; width: 100%; transition: all 0.5s ease-in-out; }
         .oil-phase { background-color: #fde047; /* Yellow */ }
         .water-phase { background-color: #3b82f6; /* Blue */ }
-        /* Changed me-phase to be green as requested */
         .me-phase { background-color: #10B981; /* Green */ }
         .me-phase-w1 { background-color: #60a5fa; opacity: 0.7; }
         .me-phase-w2 { background-color: #facc15; opacity: 0.7; }
@@ -62,7 +61,7 @@
         <section class="fade-in">
             <div class="grid grid-cols-1 lg:grid-cols-5 gap-6">
 
-                <div class="lg:col-span-2 space-y-6 sticky-controls">
+                <div class="lg:col-span-2 space-y-6 lg:sticky top-6">
                     <div class="section-card">
                         <h2 class="section-title">Interactive Laboratory</h2>
                         <div class="space-y-4">
@@ -99,7 +98,6 @@
                 </div>
 
                 <div class="lg:col-span-3 space-y-6">
-                    <!-- === MODIFIED SECTION AS PER REQUEST === -->
                     <div class="section-card">
                         <h2 class="section-title">Predicted Optimal Salinity: WIII Microemulsion</h2>
                         <p class="text-sm text-gray-400 mb-6">At the predicted optimal salinity (ln S*), the system achieves a middle-phase microemulsion (Winsor III). This phase, shown in green, contains significant amounts of both oil (yellow) and water (blue), and is ideal for maximizing oil recovery. Use the sliders to see how formulation variables affect the optimal point and phase behavior.</p>
@@ -118,7 +116,6 @@
                             </div>
                         </div>
                     </div>
-                    <!-- === END OF MODIFIED SECTION === -->
                     <div class="section-card">
                         <h2 class="section-title">Analysis: ln(S*) vs. EACN</h2>
                         <p class="text-xs text-gray-500 mb-2">This plot shows the optimal salinity (ln S*) required for different oils, based on a local model of surfactants similar to your selection.</p>
@@ -162,7 +159,6 @@
             return { m, b };
         };
 
-        // --- UPDATED FUNCTION WITH NEW LOGIC ---
         const update = () => {
             // Read all current slider values into the state
             for (const key in app.dom.sliders) {
@@ -178,7 +174,6 @@
 
             // --- HLD-BASED ADJUSTMENT LOGIC ---
             // Define empirical coefficients for how each parameter affects the formulation.
-            // These determine how much each parameter shifts the HLD.
             const k_Nc = 0.04;  // Effect of surfactant tail length
             const k_Neo = 0.12; // Effect of ethylene oxide groups
             const k_Npo = 0.03; // Effect of propylene oxide groups
@@ -331,5 +326,6 @@
     </script>
 </body>
 </html>
+
 
 
