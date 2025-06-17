@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Art of Smart Determination of the Optimum Formulation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --accent-color: #4f46e5; --accent-color-light: #c7d2fe; }
+        body { font-family: 'Montserrat', sans-serif; background-color: #111827; color: #e5e7eb; scroll-behavior: smooth; }
+        .section-card { background-color: #1f2937; border: 1px solid #374151; border-radius: 0.75rem; padding: 2rem; }
+        .header-title { color: #f9fafb; font-weight: 700; font-size: 2.5rem; letter-spacing: -0.025em; }
+        .section-title { color: #d1d5db; font-weight: 700; font-size: 1.5rem; border-bottom: 1px solid #4b5563; padding-bottom: 0.75rem; margin-bottom: 1.5rem; }
+        .slider-label { font-size: 0.875rem; font-weight: 700; color: #9ca3af; }
+        .slider-value { font-size: 1rem; font-weight: 700; color: var(--accent-color-light); }
+        .sticky-controls { position: sticky; top: 1.5rem; }
+        .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+        .test-tube { width: 80px; height: 200px; border: 2px solid #9ca3af; border-top: none; border-radius: 0 0 15px 15px; margin: 0 auto; position: relative; background-color: transparent; overflow: hidden; }
+        .phase { position: absolute; width: 100%; transition: all 0.5s ease-in-out; }
+        .oil-phase { background-color: #fde047; }
+        .water-phase { background-color: #3b82f6; }
+        .me-phase { background: linear-gradient(to right, #a78bfa, #818cf8); opacity: 0.85; }
+        .me-phase-w1 { background-color: #60a5fa; opacity: 0.7; }
+        .me-phase-w2 { background-color: #facc15; opacity: 0.7; }
+    </style>
+</head>
+<body class="antialiased">
+
+    <main class="container mx-auto p-4 md:p-8 max-w-7xl">
+
+        <section class="min-h-screen flex flex-col justify-center text-center fade-in">
+            <h1 class="header-title">The Art of Smart Determination of the Optimum Formulation</h1>
+            <p class="text-lg text-gray-400 mt-4">Practical Guidelines and Applications</p>
+            <p class="text-md text-gray-500 mt-2">(Ronald Marquez, University of Girona, Spain)</p>
+            <div class="mt-12 text-gray-400 animate-bounce">
+                <svg class="w-8 h-8 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                <p>Scroll to Begin</p>
+            </div>
+        </section>
+
+        <section class="min-h-screen flex items-center fade-in">
+            <div class="section-card w-full">
+                <h2 class="section-title">The Foundation: A Robust Dataset</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div class="text-gray-300 space-y-4 prose prose-invert prose-p:text-gray-300">
+                        <p>The efficiency of chemical EOR depends on achieving ultra-low interfacial tension (IFT) at the optimum microemulsion phase behavior. However, finding the right surfactant for specific oil and reservoir conditions often requires extensive, costly testing.</p>
+                        <p>Building on the foundational work of <strong class="text-indigo-300">Salager et al. (1979)</strong>, who correlated these variables for classical surfactants, modern research seeks to expand these principles. The work presented in <strong class="text-indigo-300">SPE-154262-MS by Pope, Weerasooriya, Britton et al.</strong> developed a dataset with a wide range of modern extended surfactants, including sulfates, sulfonates, and carboxylates.</p>
+                        <p>This dashboard utilizes a <strong class="text-white">143-point dataset</strong> derived from that research, augmented by a Random Forest model, as an example of predictive modeling tools that can significantly reduces the time and cost of formulation development.</p>
+                    </div>
+                    <div class="text-center">
+                         <svg class="w-40 h-40 mx-auto" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M18 18.25C18 18.25 13.5 15.25 12 15.25C10.5 15.25 6 18.25 6 18.25" stroke="var(--accent-color)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 3V12.25" stroke="#9ca3af" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 12.25C13.6569 12.25 15 10.9069 15 9.25C15 7.59315 13.6569 6.25 12 6.25C10.3431 6.25 9 7.59315 9 9.25C9 10.9069 10.3431 12.25 12 12.25Z" stroke="#9ca3af" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M21.5 12C21.5 17.2467 17.2467 21.5 12 21.5C6.75329 21.5 2.5 17.2467 2.5 12C2.5 6.75329 6.75329 2.5 12 2.5C17.2467 2.5 21.5 6.75329 21.5 12Z" stroke="var(--accent-color)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        <p class="mt-4 text-gray-400">Data from the nexus of experiment and correlation.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="fade-in">
+            <div class="grid grid-cols-1 lg:grid-cols-5 gap-6">
+
+                <div class="lg:col-span-2 space-y-6 sticky-controls">
+                    <div class="section-card">
+                        <h2 class="section-title">Interactive Laboratory</h2>
+                        <div class="space-y-4">
+                             <div>
+                                <div class="flex justify-between items-center"><label class="slider-label">Oil Type (EACN)</label><span id="eacn-value" class="slider-value"></span></div>
+                                <input id="eacn-slider" type="range" min="6.8" max="16" value="12" step="0.1" class="w-full">
+                            </div>
+                            <div>
+                                <div class="flex justify-between items-center"><label class="slider-label">Surfactant Tail (N<sub>c</sub>)</label><span id="nc-value" class="slider-value"></span></div>
+                                <input id="nc-slider" type="range" min="13" max="27.1" value="18.1" step="0.1" class="w-full">
+                            </div>
+                            <div>
+                               <div class="flex justify-between items-center"><label class="slider-label">Hydrophilic Head (N<sub>EO</sub>)</label><span id="neo-value" class="slider-value"></span></div>
+                                <input id="neo-slider" type="range" min="0" max="10.2" value="0" step="0.1" class="w-full">
+                            </div>
+                            <div>
+                                <div class="flex justify-between items-center"><label class="slider-label">Spacer (N<sub>PO</sub>)</label><span id="npo-value" class="slider-value"></span></div>
+                                <input id="npo-slider" type="range" min="0" max="13" value="4.7" step="0.1" class="w-full">
+                            </div>
+                            <div>
+                                <div class="flex justify-between items-center"><label class="slider-label">Temperature (°C)</label><span id="t-value" class="slider-value"></span></div>
+                                <input id="t-slider" type="range" min="0" max="94" value="34" step="1" class="w-full">
+                            </div>
+                             <div class="pt-4 border-t border-gray-700">
+                                <div class="flex justify-between items-center"><label class="slider-label">Your Available Brine Salinity (ln S)</label><span id="available-lns-value" class="slider-value"></span></div>
+                                <input id="available-lns-slider" type="range" min="4.2" max="5.2" value="4.7" step="0.01" class="w-full">
+                            </div>
+                        </div>
+                    </div>
+                     <div class="section-card">
+                        <h2 class="section-title">Formulator's Insight</h2>
+                        <div id="insight-container" class="text-sm text-gray-300 h-28"></div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-3 space-y-6">
+                    <div class="section-card">
+                        <h2 class="section-title">Formulation Analysis</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+                            <div>
+                                <p class="text-sm font-bold text-center">Phase Behavior (HLD)</p>
+                                <div class="test-tube mt-2">
+                                    <div id="phase-oil" class="phase oil-phase"></div>
+                                    <div id="phase-water" class="phase water-phase"></div>
+                                    <div id="phase-microemulsion" class="phase"></div>
+                                </div>
+                            </div>
+                             <div>
+                                <p class="text-sm font-bold text-center">Predicted Optimal Salinity (ln S*)</p>
+                                <p class="text-5xl font-bold text-center text-white mt-8" id="logS-star-display"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="section-card">
+                        <h2 class="section-title">Analysis: ln(S*) vs. EACN</h2>
+                        <p class="text-xs text-gray-500 mb-2">This plot shows the optimal salinity (ln S*) required for different oils, based on a local model of surfactants similar to your selection.</p>
+                        <div class="w-full h-64 mt-4"><canvas id="plot1-chart"></canvas></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+        const app = {
+            state: {},
+            config: { K: 5, features: ['Nc', 'eacn', 'Neo', 'Npo', 'T'] },
+            dom: {},
+            charts: {},
+            normalization: {},
+            dataset: [ { "Nc": 24.5, "Npo": 1.8, "Neo": 1.5, "T": 64, "logS": 4.5485, "eacn": 16 }, { "Nc": 27.1, "Npo": 0, "Neo": 0, "T": 64, "logS": 4.5126, "eacn": 16 }, { "Nc": 16, "Npo": 7, "Neo": 0, "T": 64, "logS": 4.5485, "eacn": 16 }, { "Nc": 13, "Npo": 13, "Neo": 0, "T": 64, "logS": 4.2395, "eacn": 16 }, { "Nc": 15.1, "Npo": 7.9, "Neo": 0, "T": 64, "logS": 4.5167, "eacn": 16 }, { "Nc": 19.4, "Npo": 4.6, "Neo": 0, "T": 64, "logS": 4.4894, "eacn": 16 }, { "Nc": 20, "Npo": 0, "Neo": 7.8, "T": 64, "logS": 4.5423, "eacn": 16 }, { "Nc": 22.8, "Npo": 0, "Neo": 10.2, "T": 64, "logS": 4.2003, "eacn": 16 }, { "Nc": 23.8, "Npo": 2.8, "Neo": 3, "T": 64, "logS": 4.5167, "eacn": 16 }, { "Nc": 23.8, "Npo": 2.3, "Neo": 2, "T": 64, "logS": 4.5167, "eacn": 16 }, { "Nc": 16, "Npo": 4, "Neo": 0, "T": 44, "logS": 5.157, "eacn": 9.9 }, { "Nc": 17.2, "Npo": 2.4, "Neo": 2.4, "T": 84, "logS": 4.6532, "eacn": 8.73 }, { "Nc": 17, "Npo": 2.2, "Neo": 3, "T": 84, "logS": 4.7782, "eacn": 8.73 }, { "Nc": 16.9, "Npo": 1.9, "Neo": 3.5, "T": 84, "logS": 4.9085, "eacn": 8.73 }, { "Nc": 21.5, "Npo": 3.3, "Neo": 2, "T": 55, "logS": 4.4771, "eacn": 12 }, { "Nc": 16.3, "Npo": 2.4, "Neo": 2.7, "T": 0, "logS": 4.845, "eacn": 13.6 }, { "Nc": 13.3, "Npo": 5.2, "Neo": 1.6, "T": 94, "logS": 4.6532, "eacn": 11.7 }, { "Nc": 24.1, "Npo": 1.4, "Neo": 2.9, "T": 79, "logS": 4.4771, "eacn": 14 }, { "Nc": 23.9, "Npo": 1.3, "Neo": 3.4, "T": 78, "logS": 4.4771, "eacn": 14 }, { "Nc": 23.1, "Npo": 4.7, "Neo": 1.9, "T": 79, "logS": 4.3979, "eacn": 14 }, { "Nc": 16, "Npo": 4, "Neo": 0, "T": 14, "logS": 4.544, "eacn": 12 }, { "Nc": 14.3, "Npo": 7.2, "Neo": 0, "T": 14, "logS": 4.544, "eacn": 12 }, { "Nc": 21.3, "Npo": 2.1, "Neo": 4.7, "T": 79, "logS": 4.5798, "eacn": 15 }, { "Nc": 17.2, "Npo": 2.4, "Neo": 2.4, "T": 79, "logS": 4.8388, "eacn": 15 }, { "Nc": 18.2, "Npo": 3.6, "Neo": 0, "T": 77, "logS": 4.3062, "eacn": 11 }, { "Nc": 17.2, "Npo": 7, "Neo": 0, "T": 0, "logS": 4.491, "eacn": 10 }, { "Nc": 22.6, "Npo": 1, "Neo": 4.7, "T": 79, "logS": 4.6021, "eacn": 11.4 }, { "Nc": 16.9, "Npo": 1.9, "Neo": 3.5, "T": 79, "logS": 4.556, "eacn": 6.9 }, { "Nc": 26, "Npo": 0, "Neo": 0, "T": 79, "logS": 4.243, "eacn": 11.4 }, { "Nc": 18, "Npo": 2.2, "Neo": 2.3, "T": 79, "logS": 4.6675, "eacn": 11.4 }, { "Nc": 17.9, "Npo": 2.6, "Neo": 2.6, "T": 79, "logS": 4.716, "eacn": 11.4 }, { "Nc": 18, "Npo": 2.4, "Neo": 3.5, "T": 79, "logS": 4.7559, "eacn": 11.4 }, { "Nc": 13.6, "Npo": 3.8, "Neo": 8.4, "T": 79, "logS": 4.415, "eacn": 6.9 }, { "Nc": 18.1, "Npo": 4.7, "Neo": 0, "T": 34, "logS": 4.5147, "eacn": 8.7 }, { "Nc": 18.1, "Npo": 4.7, "Neo": 0, "T": 34, "logS": 4.4427, "eacn": 7.4 }, { "Nc": 18.1, "Npo": 4.7, "Neo": 0, "T": 34, "logS": 4.6441, "eacn": 10.3 }, { "Nc": 18.1, "Npo": 4.7, "Neo": 0, "T": 34, "logS": 4.6406, "eacn": 12.4 }, { "Nc": 18.1, "Npo": 4.7, "Neo": 0, "T": 34, "logS": 4.3545, "eacn": 6.8 }, { "Nc": 17.2, "Npo": 2.4, "Neo": 2.4, "T": 84, "logS": 4.8261, "eacn": 11.3 }, { "Nc": 17.2, "Npo": 2.4, "Neo": 2.4, "T": 84, "logS": 4.8633, "eacn": 11.9 }, { "Nc": 17.2, "Npo": 2.4, "Neo": 2.4, "T": 84, "logS": 4.8921, "eacn": 12.9 }, { "Nc": 17.2, "Npo": 2.4, "Neo": 2.4, "T": 84, "logS": 4.9243, "eacn": 13.9 },
+                { Nc: 24.91, Npo: 12.75, Neo: 8.82, T: 77.35, eacn: 13.20, logS: 4.465 }, { Nc: 23.06, Npo: 7.80, Neo: 8.61, T: 15.69, eacn: 7.57, logS: 4.452 }, { Nc: 22.89, Npo: 11.60, Neo: 9.10, T: 67.01, eacn: 12.67, logS: 4.442 }, { Nc: 25.60, Npo: 10.67, Neo: 5.94, T: 14.65, eacn: 13.74, logS: 4.518 }, { Nc: 14.32, Npo: 2.13, Neo: 8.28, T: 32.09, eacn: 13.35, logS: 4.626 }, { Nc: 14.50, Npo: 2.30, Neo: 8.78, T: 80.70, eacn: 9.52, logS: 4.640 }, { Nc: 14.73, Npo: 2.22, Neo: 1.45, T: 50.65, eacn: 9.53, logS: 4.617 }, { Nc: 16.95, Npo: 9.53, Neo: 9.72, T: 58.90, eacn: 10.40, logS: 4.573 }, { Nc: 15.86, Npo: 9.81, Neo: 4.05, T: 79.66, eacn: 8.00, logS: 4.590 }, { Nc: 17.03, Npo: 4.21, Neo: 5.02, T: 67.37, eacn: 14.38, logS: 4.624 }, { Nc: 23.93, Npo: 9.27, Neo: 6.52, T: 85.50, eacn: 9.47, logS: 4.598 }, { Nc: 20.62, Npo: 0.50, Neo: 0.61, T: 53.84, eacn: 14.39, logS: 4.468 }, { Nc: 22.04, Npo: 8.95, Neo: 6.80, T: 26.04, eacn: 10.13, logS: 4.531 }, { Nc: 26.57, Npo: 7.67, Neo: 1.88, T: 70.41, eacn: 13.70, logS: 4.489 }, { Nc: 17.93, Npo: 10.90, Neo: 5.37, T: 59.53, eacn: 7.13, logS: 4.516 }, { Nc: 13.10, Npo: 4.69, Neo: 3.02, T: 12.86, eacn: 14.65, logS: 4.594 }, { Nc: 22.81, Npo: 8.33, Neo: 2.92, T: 88.87, eacn: 9.31, logS: 4.589 }, { Nc: 14.79, Npo: 9.97, Neo: 7.10, T: 40.38, eacn: 13.53, logS: 4.581 }, { Nc: 19.57, Npo: 5.18, Neo: 0.58, T: 2.14, eacn: 15.51, logS: 4.557 }, { Nc: 24.72, Npo: 8.07, Neo: 10.15, T: 57.37, eacn: 14.92, logS: 4.443 }, { Nc: 13.04, Npo: 0.52, Neo: 2.71, T: 23.08, eacn: 13.82, logS: 4.574 }, { Nc: 25.40, Npo: 0.44, Neo: 8.12, T: 44.65, eacn: 15.27, logS: 4.439 }, { Nc: 18.03, Npo: 0.70, Neo: 9.74, T: 29.10, eacn: 10.13, logS: 4.576 }, { Nc: 23.81, Npo: 9.76, Neo: 8.29, T: 17.48, eacn: 7.16, logS: 4.453 }, { Nc: 18.66, Npo: 3.00, Neo: 9.94, T: 38.76, eacn: 9.70, logS: 4.509 }, { Nc: 16.68, Npo: 12.85, Neo: 2.98, T: 67.98, eacn: 9.51, logS: 4.620 }, { Nc: 26.45, Npo: 6.06, Neo: 3.63, T: 8.07, eacn: 13.40, logS: 4.552 }, { Nc: 18.10, Npo: 7.45, Neo: 5.38, T: 8.92, eacn: 8.54, logS: 4.562 }, { Nc: 16.35, Npo: 9.02, Neo: 6.66, T: 34.31, eacn: 9.37, logS: 4.619 }, { Nc: 18.76, Npo: 7.01, Neo: 5.92, T: 1.69, eacn: 15.56, logS: 4.572 }, { Nc: 16.30, Npo: 1.43, Neo: 1.76, T: 22.55, eacn: 10.62, logS: 4.640 }, { Nc: 15.13, Npo: 1.85, Neo: 2.69, T: 40.17, eacn: 13.60, logS: 4.689 }, { Nc: 15.17, Npo: 10.70, Neo: 2.67, T: 40.01, eacn: 11.21, logS: 4.603 }, { Nc: 18.16, Npo: 8.53, Neo: 7.32, T: 4.61, eacn: 10.44, logS: 4.569 }, { Nc: 21.76, Npo: 7.99, Neo: 3.30, T: 48.90, eacn: 13.99, logS: 4.538 }, { Nc: 16.54, Npo: 6.62, Neo: 9.76, T: 86.08, eacn: 8.23, logS: 4.658 }, { Nc: 26.23, Npo: 3.38, Neo: 7.63, T: 8.42, eacn: 13.80, logS: 4.528 }, { Nc: 14.79, Npo: 5.12, Neo: 6.83, T: 69.04, eacn: 14.28, logS: 4.560 }, { Nc: 16.63, Npo: 12.42, Neo: 4.66, T: 85.97, eacn: 7.32, logS: 4.636 }, { Nc: 23.93, Npo: 0.83, Neo: 6.06, T: 21.87, eacn: 8.41, logS: 4.496 }, { Nc: 17.07, Npo: 4.22, Neo: 9.88, T: 24.21, eacn: 14.83, logS: 4.582 }, { Nc: 17.64, Npo: 4.82, Neo: 1.01, T: 1.44, eacn: 12.97, logS: 4.645 }, { Nc: 26.80, Npo: 5.56, Neo: 8.03, T: 29.92, eacn: 8.79, logS: 4.493 }, { Nc: 23.08, Npo: 6.16, Neo: 1.79, T: 8.42, eacn: 7.95, logS: 4.470 }, { Nc: 15.57, Npo: 12.26, Neo: 5.69, T: 77.18, eacn: 9.74, logS: 4.584 }, { Nc: 14.37, Npo: 12.81, Neo: 9.87, T: 89.85, eacn: 13.44, logS: 4.608 }, { Nc: 18.46, Npo: 11.04, Neo: 4.44, T: 69.06, eacn: 13.75, logS: 4.534 }, { Nc: 23.61, Npo: 4.86, Neo: 3.53, T: 85.24, eacn: 9.85, logS: 4.607 }, { Nc: 22.69, Npo: 10.68, Neo: 3.67, T: 49.53, eacn: 11.60, logS: 4.500 }, { Nc: 20.72, Npo: 12.40, Neo: 4.70, T: 41.98, eacn: 10.09, logS: 4.532 }, { Nc: 17.32, Npo: 0.87, Neo: 6.85, T: 81.33, eacn: 13.08, logS: 4.637 }, { Nc: 15.41, Npo: 7.83, Neo: 0.80, T: 86.87, eacn: 14.78, logS: 4.628 }, { Nc: 19.82, Npo: 11.16, Neo: 1.02, T: 8.41, eacn: 8.00, logS: 4.453 }, { Nc: 18.67, Npo: 8.40, Neo: 0.39, T: 79.63, eacn: 13.50, logS: 4.486 }, { Nc: 25.05, Npo: 3.04, Neo: 2.35, T: 46.93, eacn: 9.91, logS: 4.534 }, { Nc: 26.70, Npo: 7.84, Neo: 1.10, T: 65.07, eacn: 12.55, logS: 4.493 }, { Nc: 23.55, Npo: 9.93, Neo: 2.37, T: 79.36, eacn: 13.42, logS: 4.524 }, { Nc: 25.22, Npo: 0.28, Neo: 2.33, T: 6.44, eacn: 11.67, logS: 4.503 }, { Nc: 20.10, Npo: 1.25, Neo: 7.42, T: 73.45, eacn: 16.00, logS: 4.514 }, { Nc: 14.27, Npo: 9.62, Neo: 0.72, T: 58.05, eacn: 11.52, logS: 4.521 }, { Nc: 20.00, Npo: 12.29, Neo: 0.04, T: 6.65, eacn: 7.26, logS: 4.437 }, { Nc: 19.77, Npo: 1.11, Neo: 5.37, T: 88.75, eacn: 13.27, logS: 4.658 }, { Nc: 15.35, Npo: 7.41, Neo: 5.23, T: 89.81, eacn: 13.04, logS: 4.702 }, { Nc: 14.15, Npo: 1.17, Neo: 9.70, T: 86.83, eacn: 13.70, logS: 4.664 }, { Nc: 21.02, Npo: 4.73, Neo: 5.23, T: 82.79, eacn: 15.21, logS: 4.627 }, { Nc: 14.43, Npo: 7.75, Neo: 0.65, T: 81.88, eacn: 11.00, logS: 4.597 }, { Nc: 21.87, Npo: 5.00, Neo: 6.20, T: 24.92, eacn: 9.64, logS: 4.540 }, { Nc: 20.63, Npo: 12.06, Neo: 1.44, T: 42.12, eacn: 13.61, logS: 4.504 }, { Nc: 23.43, Npo: 8.77, Neo: 5.01, T: 28.78, eacn: 15.32, logS: 4.543 }, { Nc: 15.00, Npo: 3.27, Neo: 4.61, T: 4.80, eacn: 15.32, logS: 4.659 }, { Nc: 24.76, Npo: 6.01, Neo: 1.92, T: 73.30, eacn: 15.53, logS: 4.479 }, { Nc: 15.00, Npo: 4.03, Neo: 6.42, T: 21.46, eacn: 14.50, logS: 4.595 }, { Nc: 20.69, Npo: 10.33, Neo: 3.71, T: 83.39, eacn: 14.23, logS: 4.602 }, { Nc: 20.31, Npo: 1.03, Neo: 8.30, T: 93.99, eacn: 15.29, logS: 4.618 }, { Nc: 17.99, Npo: 1.05, Neo: 6.92, T: 93.01, eacn: 14.97, logS: 4.698 }, { Nc: 19.07, Npo: 10.51, Neo: 8.12, T: 76.39, eacn: 14.57, logS: 4.483 }, { Nc: 14.02, Npo: 5.37, Neo: 3.98, T: 63.78, eacn: 11.64, logS: 4.623 }, { Nc: 18.08, Npo: 12.08, Neo: 0.89, T: 57.48, eacn: 14.98, logS: 4.513 }, { Nc: 26.27, Npo: 10.99, Neo: 10.08, T: 33.23, eacn: 8.72, logS: 4.437 }, { Nc: 19.70, Npo: 10.68, Neo: 6.63, T: 49.41, eacn: 12.46, logS: 4.514 }, { Nc: 26.93, Npo: 9.54, Neo: 9.77, T: 13.47, eacn: 7.07, logS: 4.416 }, { Nc: 15.05, Npo: 10.19, Neo: 2.13, T: 45.57, eacn: 7.67, logS: 4.503 }, { Nc: 25.14, Npo: 5.63, Neo: 7.11, T: 83.46, eacn: 9.21, logS: 4.588 }, { Nc: 25.01, Npo: 9.31, Neo: 2.53, T: 49.41, eacn: 12.41, logS: 4.538 }, { Nc: 22.40, Npo: 0.58, Neo: 8.18, T: 47.60, eacn: 14.40, logS: 4.430 }, { Nc: 13.06, Npo: 5.79, Neo: 3.44, T: 39.71, eacn: 9.01, logS: 4.575 }, { Nc: 18.72, Npo: 11.94, Neo: 4.90, T: 51.64, eacn: 6.94, logS: 4.459 }, { Nc: 22.98, Npo: 4.01, Neo: 2.63, T: 35.84, eacn: 9.45, logS: 4.515 }, { Nc: 25.32, Npo: 3.07, Neo: 2.51, T: 70.32, eacn: 11.65, logS: 4.529 }, { Nc: 14.41, Npo: 9.37, Neo: 7.93, T: 18.15, eacn: 10.46, logS: 4.587 }, { Nc: 21.64, Npo: 11.52, Neo: 5.11, T: 25.71, eacn: 10.63, logS: 4.530 }, { Nc: 26.65, Npo: 12.84, Neo: 1.75, T: 50.07, eacn: 11.13, logS: 4.461 }, { Nc: 13.38, Npo: 1.93, Neo: 3.61, T: 89.93, eacn: 14.93, logS: 4.731 }, { Nc: 14.40, Npo: 3.34, Neo: 8.32, T: 78.17, eacn: 13.69, logS: 4.585 }, { Nc: 17.22, Npo: 1.73, Neo: 8.63, T: 20.02, eacn: 15.26, logS: 4.636 }, { Nc: 19.53, Npo: 6.01, Neo: 10.17, T: 52.57, eacn: 7.23, logS: 4.425 }, { Nc: 13.51, Npo: 8.65, Neo: 0.69, T: 6.98, eacn: 11.44, logS: 4.562 }, { Nc: 21.24, Npo: 7.40, Neo: 8.06, T: 88.44, eacn: 11.78, logS: 4.631 }, { Nc: 17.95, Npo: 10.41, Neo: 0.90, T: 78.71, eacn: 11.58, logS: 4.541 }, { Nc: 15.64, Npo: 11.12, Neo: 7.27, T: 36.29, eacn: 12.06, logS: 4.584 }
+            ]
+        };
+
+        const getRelevantData = (inputState) => {
+            return app.dataset.filter(p => 
+                Math.abs(p.Neo - inputState.neo) < 2.0 &&
+                Math.abs(p.Npo - inputState.npo) < 2.0 &&
+                Math.abs(p.T - inputState.t) < 15.0
+            ).sort((a,b) => a.eacn - b.eacn);
+        };
+
+        const buildLocalModel = (data) => {
+            if (data.length < 2) return { m: 0.045, b: 4.5 };
+            let sumX = 0, sumY = 0, sumXY = 0, sumX2 = 0;
+            data.forEach(p => { sumX += p.eacn; sumY += p.logS; sumXY += p.eacn * p.logS; sumX2 += p.eacn * p.eacn; });
+            const n = data.length;
+            let m = (n * sumXY - sumX * sumY) / (n * sumX2 - sumX * sumX);
+            if (isNaN(m) || m < 0.01) m = 0.01;
+            const b = (sumY - m * sumX) / n;
+            return { m, b };
+        };
+
+        const update = () => {
+            for (const key in app.dom.sliders) {
+                app.state[key] = parseFloat(app.dom.sliders[key].value);
+            }
+            const relevantData = getRelevantData(app.state);
+            const localModel = buildLocalModel(relevantData);
+            app.state.logS_star = localModel.m * app.state.eacn + localModel.b;
+            app.state.hld = app.state.available_lnS - app.state.logS_star;
+            render(relevantData, localModel);
+        };
+
+        const render = (relevantData, localModel) => {
+            for (const key in app.dom.values) {
+                app.dom.values[key].textContent = app.state[key].toFixed(1);
+            }
+            app.dom.logSDisplay.textContent = app.state.logS_star.toFixed(4);
+
+            const hld = app.state.hld;
+            if (hld < -0.1) {
+                app.dom.insight.innerHTML = `<p>System is <strong class="text-blue-400">Hydrophilic (O/W)</strong>.</p><p class="text-xs mt-2">The surfactant prefers the water phase. Increase brine salinity or surfactant lipophilicity (Nc) to achieve optimality.</p>`;
+            } else if (hld > 0.1) {
+                app.dom.insight.innerHTML = `<p>System is <strong class="text-orange-400">Lipophilic (W/O)</strong>.</p><p class="text-xs mt-2">The surfactant prefers the oil phase. Decrease brine salinity or increase surfactant hydrophilicity (NEO) to achieve optimality.</p>`;
+            } else {
+                app.dom.insight.innerHTML = `<p>System is <strong class="text-green-400">Optimal (Winsor III)</strong>.</p><p class="text-xs mt-2">The formulation is balanced, creating a middle-phase microemulsion with ultra-low IFT, ideal for EOR.</p>`;
+            }
+            
+            const me_size = Math.max(0, 1 - Math.abs(hld) / 0.5) * 20;
+            if (hld < -0.05) { // Winsor I (O/W)
+                app.dom.phaseOil.style.cssText = `height: 50%; top: 0;`;
+                app.dom.phaseWater.style.cssText = `height: 50%; top: 50%;`;
+                app.dom.phaseMicro.style.cssText = `height: ${me_size}%; top: ${100 - me_size}%;`;
+                app.dom.phaseMicro.className = 'phase me-phase-w1';
+            } else if (hld > 0.05) { // Winsor II (W/O)
+                app.dom.phaseOil.style.cssText = `height: 50%; top: 0;`;
+                app.dom.phaseWater.style.cssText = `height: 50%; top: 50%;`;
+                app.dom.phaseMicro.style.cssText = `height: ${me_size}%; top: 0;`;
+                app.dom.phaseMicro.className = 'phase me-phase-w2';
+            } else { // Winsor III
+                const oilHeight = 50 - me_size / 2;
+                app.dom.phaseOil.style.cssText = `height: ${oilHeight}%; top: 0;`;
+                app.dom.phaseMicro.style.cssText = `height: ${me_size}%; top: ${oilHeight}%;`;
+                app.dom.phaseWater.style.cssText = `height: ${100 - oilHeight - me_size}%; top: ${oilHeight + me_size}%;`;
+                app.dom.phaseMicro.className = 'phase me-phase';
+            }
+
+            const chartData = relevantData.map(p => ({ x: p.eacn, y: p.logS }));
+            const eacnRange = [app.normalization.eacn.min, app.normalization.eacn.max];
+            const trendlineData = eacnRange.map(x => ({ x: x, y: localModel.m * x + localModel.b }));
+            app.charts.plot1.data.datasets[0].data = chartData;
+            app.charts.plot1.data.datasets[1].data = trendlineData;
+            app.charts.plot1.update();
+        };
+        
+        const createCharts = () => {
+            const chartOptions = (xTitle, yTitle) => ({
+                responsive: true, maintainAspectRatio: false,
+                scales: { 
+                    x: { title: { display: true, text: xTitle, color: '#9ca3af' }, ticks: { color: '#9ca3af' }, grid: { color: '#374151' } }, 
+                    y: { title: { display: true, text: yTitle, color: '#9ca3af' }, ticks: { color: '#9ca3af' }, grid: { color: '#374151' } } 
+                },
+                plugins: { legend: { display: false } }
+            });
+
+            const plot1Ctx = document.getElementById('plot1-chart').getContext('2d');
+            app.charts.plot1 = new Chart(plot1Ctx, {
+                data: {
+                    datasets: [
+                        { type: 'scatter', data: [], backgroundColor: 'rgba(199, 210, 254, 0.7)', label: 'Relevant Data' },
+                        { type: 'line', data: [], borderColor: '#fde047', borderWidth: 2, pointRadius: 0, tension: 0.1, label: 'Trendline' }
+                    ]
+                },
+                options: chartOptions('EACN', 'ln(S*)')
+            });
+        };
+
+        const init = () => {
+            app.dom = {
+                sliders: { nc: document.getElementById('nc-slider'), eacn: document.getElementById('eacn-slider'), neo: document.getElementById('neo-slider'), npo: document.getElementById('npo-slider'), t: document.getElementById('t-slider'), available_lnS: document.getElementById('available-lns-slider') },
+                values: { nc: document.getElementById('nc-value'), eacn: document.getElementById('eacn-value'), neo: document.getElementById('neo-value'), npo: document.getElementById('npo-value'), t: document.getElementById('t-value'), available_lnS: document.getElementById('available-lns-value') },
+                logSDisplay: document.getElementById('logS-star-display'),
+                insight: document.getElementById('insight-container'),
+                phaseOil: document.getElementById('phase-oil'),
+                phaseWater: document.getElementById('phase-water'),
+                phaseMicro: document.getElementById('phase-microemulsion'),
+            };
+            
+            app.config.features.forEach(feature => {
+                const values = app.dataset.map(p => p[feature]);
+                app.normalization[feature] = { min: Math.min(...values), max: Math.max(...values) };
+            });
+            
+            createCharts();
+
+            for (const key in app.dom.sliders) {
+                if (app.dom.sliders[key]) {
+                    app.dom.sliders[key].addEventListener('input', update);
+                }
+            }
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) { entry.target.classList.add('visible'); }
+                });
+            }, { threshold: 0.1 });
+            document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+            update();
+        };
+
+        init();
+    });
+    </script>
+</body>
+</html>
