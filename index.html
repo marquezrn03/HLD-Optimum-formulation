@@ -20,9 +20,10 @@
         .fade-in.visible { opacity: 1; transform: translateY(0); }
         .test-tube { width: 80px; height: 200px; border: 2px solid #9ca3af; border-top: none; border-radius: 0 0 15px 15px; margin: 0 auto; position: relative; background-color: transparent; overflow: hidden; }
         .phase { position: absolute; width: 100%; transition: all 0.5s ease-in-out; }
-        .oil-phase { background-color: #fde047; }
-        .water-phase { background-color: #3b82f6; }
-        .me-phase { background: linear-gradient(to right, #a78bfa, #818cf8); opacity: 0.85; }
+        .oil-phase { background-color: #fde047; /* Yellow */ }
+        .water-phase { background-color: #3b82f6; /* Blue */ }
+        /* Changed me-phase to be green as requested */
+        .me-phase { background-color: #10B981; /* Green */ }
         .me-phase-w1 { background-color: #60a5fa; opacity: 0.7; }
         .me-phase-w2 { background-color: #facc15; opacity: 0.7; }
     </style>
@@ -65,30 +66,30 @@
                     <div class="section-card">
                         <h2 class="section-title">Interactive Laboratory</h2>
                         <div class="space-y-4">
-                             <div>
-                                <div class="flex justify-between items-center"><label class="slider-label">Oil Type (EACN)</label><span id="eacn-value" class="slider-value"></span></div>
-                                <input id="eacn-slider" type="range" min="6.8" max="16" value="12" step="0.1" class="w-full">
-                            </div>
-                            <div>
-                                <div class="flex justify-between items-center"><label class="slider-label">Surfactant Tail (N<sub>c</sub>)</label><span id="nc-value" class="slider-value"></span></div>
-                                <input id="nc-slider" type="range" min="13" max="27.1" value="18.1" step="0.1" class="w-full">
-                            </div>
-                            <div>
-                               <div class="flex justify-between items-center"><label class="slider-label">Hydrophilic Head (N<sub>EO</sub>)</label><span id="neo-value" class="slider-value"></span></div>
-                                <input id="neo-slider" type="range" min="0" max="10.2" value="0" step="0.1" class="w-full">
-                            </div>
-                            <div>
-                                <div class="flex justify-between items-center"><label class="slider-label">Spacer (N<sub>PO</sub>)</label><span id="npo-value" class="slider-value"></span></div>
-                                <input id="npo-slider" type="range" min="0" max="13" value="4.7" step="0.1" class="w-full">
-                            </div>
-                            <div>
-                                <div class="flex justify-between items-center"><label class="slider-label">Temperature (°C)</label><span id="t-value" class="slider-value"></span></div>
-                                <input id="t-slider" type="range" min="0" max="94" value="34" step="1" class="w-full">
-                            </div>
-                             <div class="pt-4 border-t border-gray-700">
-                                <div class="flex justify-between items-center"><label class="slider-label">Your Available Brine Salinity (ln S)</label><span id="available-lns-value" class="slider-value"></span></div>
-                                <input id="available-lns-slider" type="range" min="4.2" max="5.2" value="4.7" step="0.01" class="w-full">
-                            </div>
+                                <div>
+                                    <div class="flex justify-between items-center"><label class="slider-label">Oil Type (EACN)</label><span id="eacn-value" class="slider-value"></span></div>
+                                    <input id="eacn-slider" type="range" min="6.8" max="16" value="12" step="0.1" class="w-full">
+                                </div>
+                                <div>
+                                    <div class="flex justify-between items-center"><label class="slider-label">Surfactant Tail (N<sub>c</sub>)</label><span id="nc-value" class="slider-value"></span></div>
+                                    <input id="nc-slider" type="range" min="13" max="27.1" value="18.1" step="0.1" class="w-full">
+                                </div>
+                                <div>
+                                   <div class="flex justify-between items-center"><label class="slider-label">Hydrophilic Head (N<sub>EO</sub>)</label><span id="neo-value" class="slider-value"></span></div>
+                                    <input id="neo-slider" type="range" min="0" max="10.2" value="0" step="0.1" class="w-full">
+                                </div>
+                                <div>
+                                    <div class="flex justify-between items-center"><label class="slider-label">Spacer (N<sub>PO</sub>)</label><span id="npo-value" class="slider-value"></span></div>
+                                    <input id="npo-slider" type="range" min="0" max="13" value="4.7" step="0.1" class="w-full">
+                                </div>
+                                <div>
+                                    <div class="flex justify-between items-center"><label class="slider-label">Temperature (°C)</label><span id="t-value" class="slider-value"></span></div>
+                                    <input id="t-slider" type="range" min="0" max="94" value="34" step="1" class="w-full">
+                                </div>
+                                 <div class="pt-4 border-t border-gray-700">
+                                    <div class="flex justify-between items-center"><label class="slider-label">Your Available Brine Salinity (ln S)</label><span id="available-lns-value" class="slider-value"></span></div>
+                                    <input id="available-lns-slider" type="range" min="4.2" max="5.2" value="4.7" step="0.01" class="w-full">
+                                </div>
                         </div>
                     </div>
                      <div class="section-card">
@@ -98,8 +99,10 @@
                 </div>
 
                 <div class="lg:col-span-3 space-y-6">
+                    <!-- === MODIFIED SECTION AS PER REQUEST === -->
                     <div class="section-card">
-                        <h2 class="section-title">Formulation Analysis (preliminary and illustrative)</h2>
+                        <h2 class="section-title">Predicted Optimal Salinity: WIII Microemulsion</h2>
+                        <p class="text-sm text-gray-400 mb-6">At the predicted optimal salinity (ln S*), the system achieves a middle-phase microemulsion (Winsor III). This phase, shown in green, contains significant amounts of both oil (yellow) and water (blue), and is ideal for maximizing oil recovery. Use the sliders to see how formulation variables affect the optimal point and phase behavior.</p>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
                             <div>
                                 <p class="text-sm font-bold text-center">Phase Behavior (HLD)</p>
@@ -115,6 +118,7 @@
                             </div>
                         </div>
                     </div>
+                    <!-- === END OF MODIFIED SECTION === -->
                     <div class="section-card">
                         <h2 class="section-title">Analysis: ln(S*) vs. EACN</h2>
                         <p class="text-xs text-gray-500 mb-2">This plot shows the optimal salinity (ln S*) required for different oils, based on a local model of surfactants similar to your selection.</p>
@@ -177,14 +181,14 @@
 
             const hld = app.state.hld;
             if (hld < -0.1) {
-                app.dom.insight.innerHTML = `<p>System is <strong class="text-blue-400">Hydrophilic (O/W)</strong>.</p><p class="text-xs mt-2">The surfactant prefers the water phase. Increase brine salinity or surfactant lipophilicity (Nc) to achieve optimality.</p>`;
+                app.dom.insight.innerHTML = `<p>System is <strong class="text-blue-400">Hydrophilic (O/W) - Winsor I</strong>.</p><p class="text-xs mt-2">The surfactant prefers the water phase. Consider increasing brine salinity or surfactant lipophilicity (Nc) to move towards optimality.</p>`;
             } else if (hld > 0.1) {
-                app.dom.insight.innerHTML = `<p>System is <strong class="text-orange-400">Lipophilic (W/O)</strong>.</p><p class="text-xs mt-2">The surfactant prefers the oil phase. Decrease brine salinity or increase surfactant hydrophilicity (NEO) to achieve optimality.</p>`;
+                app.dom.insight.innerHTML = `<p>System is <strong class="text-orange-400">Lipophilic (W/O) - Winsor II</strong>.</p><p class="text-xs mt-2">The surfactant prefers the oil phase. Consider decreasing brine salinity or increasing surfactant hydrophilicity (NEO) to move towards optimality.</p>`;
             } else {
                 app.dom.insight.innerHTML = `<p>System is <strong class="text-green-400">Optimal (Winsor III)</strong>.</p><p class="text-xs mt-2">The formulation is balanced, creating a middle-phase microemulsion with ultra-low IFT, ideal for EOR.</p>`;
             }
             
-            const me_size = Math.max(0, 1 - Math.abs(hld) / 0.5) * 20;
+            const me_size = Math.max(0, 1 - Math.abs(hld) / 0.5) * 40; // Increased size for better visibility
             if (hld < -0.05) { // Winsor I (O/W)
                 app.dom.phaseOil.style.cssText = `height: 50%; top: 0;`;
                 app.dom.phaseWater.style.cssText = `height: 50%; top: 50%;`;
@@ -196,11 +200,12 @@
                 app.dom.phaseMicro.style.cssText = `height: ${me_size}%; top: 0;`;
                 app.dom.phaseMicro.className = 'phase me-phase-w2';
             } else { // Winsor III
-                const oilHeight = 50 - me_size / 2;
-                app.dom.phaseOil.style.cssText = `height: ${oilHeight}%; top: 0;`;
+                const oilHeight = (100 - me_size) / 2;
+                const waterHeight = (100 - me_size) / 2;
+                app.dom.phaseOil.style.cssText = `height: ${oilHeight}%; top: 0; background-color: #fde047;`; // Yellow
                 app.dom.phaseMicro.style.cssText = `height: ${me_size}%; top: ${oilHeight}%;`;
-                app.dom.phaseWater.style.cssText = `height: ${100 - oilHeight - me_size}%; top: ${oilHeight + me_size}%;`;
-                app.dom.phaseMicro.className = 'phase me-phase';
+                app.dom.phaseWater.style.cssText = `height: ${waterHeight}%; top: ${oilHeight + me_size}%; background-color: #3b82f6;`; // Blue
+                app.dom.phaseMicro.className = 'phase me-phase'; // Green (from CSS)
             }
 
             const chartData = relevantData.map(p => ({ x: p.eacn, y: p.logS }));
@@ -272,3 +277,4 @@
     </script>
 </body>
 </html>
+
