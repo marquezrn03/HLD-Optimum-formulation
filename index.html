@@ -162,16 +162,70 @@
             return { m, b };
         };
 
+        // --- UPDATED FUNCTION WITH NEW LOGIC ---
         const update = () => {
+            // Read all current slider values into the state
             for (const key in app.dom.sliders) {
                 app.state[key] = parseFloat(app.dom.sliders[key].value);
             }
+
+            // Get relevant data points and build the local regression model (lnS* vs EACN)
             const relevantData = getRelevantData(app.state);
             const localModel = buildLocalModel(relevantData);
-            app.state.logS_star = localModel.m * app.state.eacn + localModel.b;
+            
+            // This is the base prediction from the local model based only on EACN
+            let logS_star_base = localModel.m * app.state.eacn + localModel.b;
+
+            // --- HLD-BASED ADJUSTMENT LOGIC ---
+            // Define empirical coefficients for how each parameter affects the formulation.
+            // These determine how much each parameter shifts the HLD.
+            const k_Nc = 0.04;  // Effect of surfactant tail length
+            const k_Neo = 0.12; // Effect of ethylene oxide groups
+            const k_Npo = 0.03; // Effect of propylene oxide groups
+            const k_T = 0.003;  // Effect of temperature
+
+            // Calculate the average formulation parameters from the local dataset
+            // that was used to build the regression model. This gives us a baseline.
+            let avg = { Nc: 0, Neo: 0, Npo: 0, T: 0 };
+            if (relevantData.length > 0) {
+                relevantData.forEach(p => {
+                    avg.Nc += p.Nc;
+                    avg.Neo += p.Neo;
+                    avg.Npo += p.Npo;
+                    avg.T += p.T;
+                });
+                const n = relevantData.length;
+                avg.Nc /= n;
+                avg.Neo /= n;
+                avg.Npo /= n;
+                avg.T /= n;
+            } else {
+                // Fallback if no local data is found, use the initial default values.
+                avg = { Nc: 18.1, Neo: 0, Npo: 4.7, T: 34 };
+            }
+
+            // Calculate the deviation of the current slider values from the average of the local data.
+            const delta_Nc = app.state.nc - avg.Nc;
+            const delta_Neo = app.state.neo - avg.Neo;
+            const delta_Npo = app.state.npo - avg.Npo;
+            const delta_T = app.state.t - avg.T;
+
+            // Adjust the base logS* prediction. This formula ensures the correct physical behavior:
+            // - Increasing Nc/Npo (lipophilic parts) makes the system more oily (hld increases).
+            // - Increasing Neo/T (hydrophilic parts) makes the system more watery (hld decreases).
+            const adjustment = (-k_Nc * delta_Nc) + (k_Neo * delta_Neo) - (k_Npo * delta_Npo) + (k_T * delta_T);
+            
+            app.state.logS_star = logS_star_base + adjustment;
+            
+            // The "hld" here is the deviation of available salinity from the predicted optimal salinity.
+            // hld > 0 means system is lipophilic (excess salt for an anionic surfactant).
+            // hld < 0 means system is hydrophilic (insufficient salt).
             app.state.hld = app.state.available_lnS - app.state.logS_star;
+            
+            // Render all the visual updates
             render(relevantData, localModel);
         };
+
 
         const render = (relevantData, localModel) => {
             for (const key in app.dom.values) {
@@ -277,4 +331,5 @@
     </script>
 </body>
 </html>
+
 
